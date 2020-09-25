@@ -1,3 +1,5 @@
+#ifndef HEADER
+#define HEADER
 typedef struct NO *ArvB;
 
 ArvB criaArvB();
@@ -7,3 +9,5 @@ int removeArvB(ArvB *raiz, int valor);
 int buscaArvB(ArvB *raiz, int valor);
 int ehVaziaArvB(ArvB *raiz);
 int totalNOArvB(ArvB *raiz);
+
+#endif

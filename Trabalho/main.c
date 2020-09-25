@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <arvoreB.h>
+#include "arvoreB.h"
+#include "tad.c"
 
 /*
 Grupo ALR
