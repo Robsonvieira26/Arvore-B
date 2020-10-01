@@ -13,5 +13,7 @@ Robson Roberto Vieira Junior - 11911BCC056
 
 int main()
 {
+    int op = menu();
+    printf("sua escolha foi %d", op);
     return 0;
 }
