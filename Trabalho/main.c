@@ -1,5 +1,4 @@
 #include "arvoreB.h"
-#include "tad.c"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,6 +12,7 @@ Robson Roberto Vieira Junior - 11911BCC056
 
 int main()
 {
+    ArvB* root = criaArvB();
     for (;;) {
         int op = menu();
         printf("sua escolha foi %d\n", op);

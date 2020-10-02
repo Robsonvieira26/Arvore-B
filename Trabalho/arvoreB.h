@@ -2,7 +2,7 @@
 #define HEADER
 typedef struct NO* ArvB;
 
-ArvB criaArvB(); // feito
+ArvB* criaArvB(); // feito
 void liberaArvB(ArvB* raiz);
 int insereArvB(ArvB* raiz, int valor);
 int removeArvB(ArvB* raiz, int valor);
