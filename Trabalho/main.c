@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "arvoreB.h"
 #include "tad.c"
+#include <stdio.h>
+#include <stdlib.h>
 
 /*
 Grupo ALR
@@ -13,13 +13,10 @@ Robson Roberto Vieira Junior - 11911BCC056
 
 int main()
 {
-    for (;;)
-    {
-
+    for (;;) {
         int op = menu();
         printf("sua escolha foi %d\n", op);
-        switch (op)
-        {
+        switch (op) {
         case 1:
             printf("Arvore Iniciada\n");
             espera();
