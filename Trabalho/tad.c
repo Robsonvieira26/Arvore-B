@@ -16,7 +16,8 @@ ArvB *criaArvB() {
   return raiz;
 }
 
-void imprimirArv(ArvB raiz) {
+void imprimirArv(ArvB raiz) { // filho esq pai filho dir
+  // Em ordem
   int i;
   if (raiz) {
     for (i = 0; i < raiz->cont; i++) {
@@ -56,13 +57,14 @@ int menu() {
     printf("|[4] Procurar um Valor       |\n");
     printf("|[5] Total de Nos            |\n");
     printf("|[6] Arvore Vazia?           |\n");
-    printf("|[7] Apagar                  |\n");
-    printf("|[8] Sair do Programa        |\n");
+    printf("|[7] Imprimir                |\n");
+    printf("|[8] Apagar                  |\n");
+    printf("|[9] Sair do Programa        |\n");
     printf("------------------------------\n");
     printf("|[O] Escolha: ");
     scanf("%d", &op);
     printf("------------------------------\n");
-  } while (op < 0 || op > 8);
+  } while (op < 0 || op > 9);
   return op;
 }
 void espera() {

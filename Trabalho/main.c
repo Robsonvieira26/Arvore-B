@@ -43,24 +43,22 @@ int main() {
     case 6:
       if (ehVaziaArvB(raiz) == 1)
         printf("A arvore esta vazia\n");
-      else if (ehVaziaArvB(raiz) == 0)
+      if (ehVaziaArvB(raiz) == 0)
         printf("A arvore nao esta vazia\n");
-      else
-        printf("A arvore nao iniciada\n");
-
       espera();
       break;
     case 7:
-      printf("Arvore Apagada\n");
+      printf("Imprimindo Arvore (Em Ordem)\n");
+      imprimirArv(*raiz);
       espera();
       break;
     case 8:
+      printf("Arvore Apagada\n");
+      espera();
+      break;
+    case 9:
       printf("Saindo...\n");
       exit(1);
-      break;
-    default:
-      printf("Opcao Invalida");
-      espera();
       break;
     }
   }
