@@ -23,6 +23,9 @@ int main() {
       break;
     case 2:
       printf("Digite o valor a ser Inserido:\n");
+      int n;
+      scanf("%d",&n);
+      insereArvB(raiz, n);
       espera();
       break;
     case 3:
