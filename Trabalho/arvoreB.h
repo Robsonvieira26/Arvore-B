@@ -2,7 +2,7 @@
 #define HEADER
 typedef struct NO *ArvB;
 
-ArvB criaArvB(); // feito
+ArvB *criaArvB(); // feito
 void liberaArvB(ArvB *raiz);
 int insereArvB(ArvB *raiz, int valor);
 int removeArvB(ArvB *raiz, int valor);
@@ -11,6 +11,6 @@ int ehVaziaArvB(ArvB *raiz);
 int totalNOArvB(ArvB *raiz);
 // Minhas funcs
 void espera();
-int main();
+int menu();
 
 #endif

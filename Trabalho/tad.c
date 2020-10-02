@@ -9,7 +9,7 @@ struct NO {
   struct NO *ptrFilhos[GRAU];
 };
 
-ArvB criaArvB() {
+ArvB *criaArvB() {
   ArvB *raiz = (ArvB *)malloc(sizeof(ArvB));
   if (raiz != NULL)
     *raiz = NULL;

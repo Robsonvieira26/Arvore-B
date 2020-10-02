@@ -1,5 +1,4 @@
 #include "arvoreB.h"
-#include "tad.c"
 #include <stdio.h>
 #include <stdlib.h>
 
