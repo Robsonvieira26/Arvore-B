@@ -43,11 +43,16 @@ int menu()
     printf("|[5] Total de Nos            |\n");
     printf("|[6] Arvore Vazia?           |\n");
     printf("|[7] Apagar                  |\n");
-    printf("|[5] Sair do Programa        |\n");
+    printf("|[8] Sair do Programa        |\n");
     printf("------------------------------\n");
     printf("|[O] Escolha: ");
     scanf("%d", &op);
     printf("------------------------------\n");
-  } while (op < 0 || op > 6);
+  } while (op < 0 || op > 8);
   return op;
+}
+void espera()
+{
+  system("pause");
+  system("cls");
 }

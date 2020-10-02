@@ -9,5 +9,8 @@ int removeArvB(ArvB *raiz, int valor);
 int buscaArvB(ArvB *raiz, int valor);
 int ehVaziaArvB(ArvB *raiz);
 int totalNOArvB(ArvB *raiz);
+//Minhas funcs
+void espera();
+int main();
 
 #endif
