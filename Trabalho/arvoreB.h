@@ -1,17 +1,12 @@
 #ifndef HEADER
 #define HEADER
-typedef struct NO *ArvB;
+typedef struct no **BTree;
+typedef struct no *NO;
 
-ArvB *criaArvB(); // feito
-void liberaArvB(ArvB *raiz);
-int insereArvB(ArvB *raiz, int valor);
-int removeArvB(ArvB *raiz, int valor);
-int buscaArvB(ArvB *raiz, int valor);
-int ehVaziaArvB(ArvB *raiz);
-int totalNOArvB(ArvB *raiz);
-void imprimirArv(ArvB raiz);
-// Minhas funcs
-void espera();
-int menu();
+BTree createBTree();
+NO createNode();
+int insertBtre(BTree btree, int value);
+int isEmpty(BTree btree);
+int isFull(BTree btree);
 
 #endif

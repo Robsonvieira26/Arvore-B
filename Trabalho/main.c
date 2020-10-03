@@ -11,63 +11,10 @@ Robson Roberto Vieira Junior - 11911BCC056
 */
 
 int main() {
-  ArvB *raiz = criaArvB();
+  BTree btree = createBTree();
+  insertBtre(btree, 5);
+  insertBtre(btree, 2);
+  insertBtre(btree, 4);
 
-  // printf("Arvore Iniciada\n");
-  // printf("Digite o valor a ser Inserido:\n");
-  int n = 5;
-  // scanf("%d",&n);
-  insereArvB(raiz, n);
-  imprimirArv(*raiz);
-  // for (;;) {
-  //   int op = menu();
-  //   printf("sua escolha foi %d\n", op);
-  //   switch (op) {
-  //   case 1:
-  //     raiz = criaArvB();
-  //     printf("Arvore Iniciada\n");
-  //     espera();
-  //     break;
-  //   case 2:
-  //     printf("Digite o valor a ser Inserido:\n");
-  //     int n;
-  //     scanf("%d",&n);
-  //     insereArvB(raiz, n);
-  //     espera();
-  //     break;
-  //   case 3:
-  //     printf("Digite o valor a ser Removido:\n");
-  //     espera();
-  //     break;
-  //   case 4:
-  //     printf("Digite o valor a ser Procurado:\n");
-  //     espera();
-  //     break;
-  //   case 5:
-  //     printf("A quantidade Total de nos na arvore é: [VALOR]\n");
-  //     espera();
-  //     break;
-  //   case 6:
-  //     if (ehVaziaArvB(raiz) == 1)
-  //       printf("A arvore esta vazia\n");
-  //     if (ehVaziaArvB(raiz) == 0)
-  //       printf("A arvore nao esta vazia\n");
-  //     espera();
-  //     break;
-  //   case 7:
-  //     printf("Imprimindo Arvore (Em Ordem)\n");
-  //     imprimirArv(*raiz);
-  //     espera();
-  //     break;
-  //   case 8:
-  //     printf("Arvore Apagada\n");
-  //     espera();
-  //     break;
-  //   case 9:
-  //     printf("Saindo...\n");
-  //     exit(1);
-  //     break;
-  //   }
-  // }
   return 0;
 }
