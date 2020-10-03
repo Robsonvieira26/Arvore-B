@@ -8,8 +8,8 @@ int insereArvB(ArvB *raiz, int valor); // feito
 int removeArvB(ArvB *raiz, int valor);
 int buscaArvB(ArvB *raiz, int valor); // feito
 int ehVaziaArvB(ArvB *raiz);          // feito
-int totalNOArvB(ArvB *raiz);
-void emOrdemArvB(ArvB *raiz); // feito
+int totalNOArvB(ArvB *raiz);          // feito
+void emOrdemArvB(ArvB *raiz);         // feito
 // Minhas funcs
 int ehCheiaArvB(ArvB *raiz);
 int insereNo(ArvB *raiz, ArvB *pai, int valor);

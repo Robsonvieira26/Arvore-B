@@ -19,7 +19,9 @@ int main() {
   insereArvB(raiz, 4);
   insereArvB(raiz, 1);
   insereArvB(raiz, 7);
-  insereArvB(raiz, 5);
+  insereArvB(raiz, 9);
+  insereArvB(raiz, 80);
+  insereArvB(raiz, 34);
   insereArvB(raiz, 54);
   insereArvB(raiz, 76);
   insereArvB(raiz, 98);
