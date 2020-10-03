@@ -1,7 +1,7 @@
 #include "arvoreB.h"
 #include <stdio.h>
 #include <stdlib.h>
-#define GRAU 4
+#define GRAU 6
 
 struct NO {
   int chaves[GRAU - 1], cont; // valores possiveis em um no && cont é a
@@ -33,9 +33,7 @@ void emOrdemArvB(ArvB *raiz) { // filho esq pai filho dir
   int i, j;
   if (auxArvB != NULL) {
     for (i = 0; i < auxArvB->cont; i++) {
-      j = i + 1;
-      if (j == auxArvB->cont)
-        emOrdemArvB(&(auxArvB->ptrFilhos[i]));
+      emOrdemArvB(&(auxArvB->ptrFilhos[i]));
       printf("[%d]", auxArvB->chaves[i]);
     }
     emOrdemArvB(&(auxArvB->ptrFilhos[i]));
@@ -152,15 +150,14 @@ void split(ArvB *raiz, ArvB *pai) {
 }
 // void liberaArvB(ArvB *raiz) {}
 // int removeArvB(ArvB *raiz, int valor) {}
+
 int buscaArvB(ArvB *raiz, int valor) {
   // Em ordem
   ArvB auxArvB = *raiz;
-  int i, j;
+  int i; // j quantidade de valores que foram testa no no
   if (auxArvB != NULL) {
     for (i = 0; i < auxArvB->cont; i++) {
-      j = i + 1;
-      if (j == auxArvB->cont)
-        buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
+      buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
       if (auxArvB->chaves[i] == valor)
         return 1;
       // printf("\n [%d]\n", auxArvB->chaves[i]);
@@ -198,7 +195,6 @@ int ehCheiaArvB(ArvB *raiz) {
   }
   return 0;
 }
-// int totalNOArvB(ArvB *raiz) {}
 
 int menu() {
   int op;
