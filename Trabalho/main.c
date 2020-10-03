@@ -15,9 +15,10 @@ int main() {
 
   // printf("Arvore Iniciada\n");
   // printf("Digite o valor a ser Inserido:\n");
-  int n = 5;
   // scanf("%d",&n);
-  insereArvB(raiz, n);
+  insereArvB(raiz, 4);
+  insereArvB(raiz, 1);
+  insereArvB(raiz, 7);
   imprimirArv(*raiz);
   // for (;;) {
   //   int op = menu();

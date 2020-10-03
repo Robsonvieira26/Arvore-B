@@ -11,6 +11,8 @@ int ehVaziaArvB(ArvB *raiz);
 int totalNOArvB(ArvB *raiz);
 void imprimirArv(ArvB raiz);
 // Minhas funcs
+int ehCheia(ArvB *raiz);
+int insereNo(ArvB *raiz, ArvB *pai, int valor);
 void espera();
 int menu();
 
