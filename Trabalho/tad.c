@@ -69,20 +69,61 @@ int insereNo(BTree btree, BTree previous, int value) {
       left->keys[l] = (*btree)->keys[l];
       left->countKeys++;
     }
+    int k=0;
+    for(;k <= mediana; k++){
+      left->childrens[k] = (*btree)->childrens[k];
+    }
 
     l++;
     int j = 0;
     for (; l < max; l++) {
       right->keys[j] = (*btree)->keys[l];
+      right->childrens[j] = (*btree)->childrens[l];
       right->countKeys++;
       j++;
     }
+    j=0;
+    for (; k <= max; k++) {
+      right->childrens[j] = (*btree)->childrens[k];
+      j++;
+    }
+    // promovendo o valor
+    int promoverValor = (*btree)->keys[mediana];
+    free(*btree);
+    *btree = NULL;
 
-    (*btree)->countKeys = 0;
-    (*previous)->keys[(*previous)->countKeys] = (*btree)->keys[mediana];
-    (*previous)->childrens[(*previous)->countKeys] = left;
-    (*previous)->countKeys++;
-    (*previous)->childrens[(*previous)->countKeys] = right;
+    int t = 0;
+    if ((*previous) == NULL) {
+      (*previous) = createNode();
+    } else {
+      for (; t < (*previous)->countKeys; t++) {
+        if (promoverValor < (*previous)->keys[t]) {
+
+          int j = (*previous)->countKeys;
+          while (j > t) {
+            (*previous)->keys[j] = (*previous)->keys[j - 1];
+            j--;
+          }
+          j = (*previous)->countKeys + 1;
+          while (j > (t + 1)) {
+            (*previous)->childrens[j] = (*previous)->childrens[j - 1];
+            j--;
+          }
+
+          (*previous)->keys[t] = promoverValor;
+          (*previous)->childrens[t] = left;
+          (*previous)->childrens[t + 1] = right;
+          (*previous)->countKeys++;
+          break;
+        }
+      }
+    }
+    if (t == (*previous)->countKeys) {
+      (*previous)->keys[t] = promoverValor;
+      (*previous)->childrens[t] = left;
+      (*previous)->childrens[t + 1] = right;
+      (*previous)->countKeys++;
+    }
   }
 
   return 1;
