@@ -1,7 +1,7 @@
 #include "arvoreB.h"
 #include <stdio.h>
 #include <stdlib.h>
-#define GRAU 5
+#define GRAU 4
 
 struct NO {
   int chaves[GRAU - 1], cont; // valores possiveis em um no && cont é a
@@ -46,7 +46,7 @@ void imprimirArv(ArvB raiz) { // filho esq pai filho dir
 
 int insereNo(ArvB *raiz, ArvB *pai, int valor){
   
-  if (ehCheia(raiz)) {
+  if (ehVaziaArvB(raiz)) {
     return 0;
   }
   // percorre e insere no sem fazer split
@@ -77,7 +77,7 @@ int insereNo(ArvB *raiz, ArvB *pai, int valor){
     }
   }
   // so faz split quando o no atual enche
-  if (ehCheia(raiz)) {
+  if (ehCheiaArvB(raiz)) {
     printf("split\n");
 
     int max = (*raiz)->cont;
@@ -165,7 +165,7 @@ int ehVaziaArvB(ArvB *raiz) {
   return 0;
 }
 
-int ehCheia(ArvB *raiz) {
+int ehCheiaArvB(ArvB *raiz) {
   if (ehVaziaArvB(raiz)) {
     return 0;
   }
