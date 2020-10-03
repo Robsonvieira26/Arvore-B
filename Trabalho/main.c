@@ -24,6 +24,12 @@ int main() {
   insereArvB(raiz, 76);
   insereArvB(raiz, 98);
   emOrdemArvB(raiz);
+  printf("\n");
+  if (buscaArvB(raiz, 11))
+    printf("Achou");
+  else
+    printf("Nao achou");
+
   // for (;;) {
   //   int op = menu();
   //   printf("sua escolha foi %d\n", op);

@@ -152,7 +152,23 @@ void split(ArvB *raiz, ArvB *pai) {
 }
 // void liberaArvB(ArvB *raiz) {}
 // int removeArvB(ArvB *raiz, int valor) {}
-int buscaArvB(ArvB *raiz, int valor) {}
+int buscaArvB(ArvB *raiz, int valor) {
+  // Em ordem
+  ArvB auxArvB = *raiz;
+  int i, j;
+  if (auxArvB != NULL) {
+    for (i = 0; i < auxArvB->cont; i++) {
+      j = i + 1;
+      if (j == auxArvB->cont)
+        buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
+      if (auxArvB->chaves[i] == valor)
+        return 1;
+      // printf("\n [%d]\n", auxArvB->chaves[i]);
+    }
+    buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
+  }
+  return 0;
+}
 
 int ehVaziaArvB(ArvB *raiz) {
   if (raiz == NULL) // raiz é null
