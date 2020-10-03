@@ -28,24 +28,21 @@ ArvB *criaArvB() {
 }
 
 void imprimirArv(ArvB raiz) { // filho esq pai filho dir
-
   // Em ordem
   int i, j;
   if (raiz != NULL) {
-    printf("\n |");
     for (i = 0; i < raiz->cont; i++) {
-      printf("- %d - ", raiz->chaves[i]);
       j = i + 1;
       if (j == raiz->cont)
-        printf("| Profundidade: [%d]\n", raiz->cont);
-      imprimirArv(raiz->ptrFilhos[i]);
+        imprimirArv(raiz->ptrFilhos[i]);
+      printf("[%d]", raiz->chaves[i]);
     }
     imprimirArv(raiz->ptrFilhos[i]);
   }
 }
 
-int insereNo(ArvB *raiz, ArvB *pai, int valor){
-  
+int insereNo(ArvB *raiz, ArvB *pai, int valor) {
+
   if (ehVaziaArvB(raiz)) {
     return 0;
   }
@@ -90,8 +87,8 @@ int insereNo(ArvB *raiz, ArvB *pai, int valor){
       left->chaves[l] = (*raiz)->chaves[l];
       left->cont++;
     }
-    int k=0;
-    for(;k <= mediana; k++){
+    int k = 0;
+    for (; k <= mediana; k++) {
       left->ptrFilhos[k] = (*raiz)->ptrFilhos[k];
     }
 
@@ -103,7 +100,7 @@ int insereNo(ArvB *raiz, ArvB *pai, int valor){
       right->cont++;
       j++;
     }
-    j=0;
+    j = 0;
     for (; k <= max; k++) {
       right->ptrFilhos[j] = (*raiz)->ptrFilhos[k];
       j++;
@@ -150,9 +147,7 @@ int insereNo(ArvB *raiz, ArvB *pai, int valor){
   return 1;
 }
 
-int insereArvB(ArvB *raiz, int valor) {
-  return insereNo(raiz, raiz, valor);
-}
+int insereArvB(ArvB *raiz, int valor) { return insereNo(raiz, raiz, valor); }
 // void liberaArvB(ArvB *raiz) {}
 // int removeArvB(ArvB *raiz, int valor) {}
 // int buscaArvB(ArvB *raiz, int valor) {}
