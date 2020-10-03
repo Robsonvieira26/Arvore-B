@@ -149,18 +149,50 @@ void split(ArvB *raiz, ArvB *pai) {
   }
 }
 // void liberaArvB(ArvB *raiz) {}
-// int removeArvB(ArvB *raiz, int valor) {}
+
+int removeArvB(ArvB *raiz, int valor) { return removeNo(raiz, raiz, valor); }
+
+int removeNo(ArvB *raiz, ArvB *anterior, int valor) {
+
+  if (ehVaziaArvB(raiz)) {
+    return 0;
+  }
+
+  ArvB no = *raiz;
+  int i = 0;
+  for (; i < no->cont; i++) {
+    if (valor <= no->chaves[i]) {
+      if (valor == no->chaves[i]) {
+        int j = i;
+        while (j < (no->cont - 1)) {
+          no->chaves[j] = no->chaves[j + 1];
+          j++;
+        }
+        no->cont--;
+        break;
+      }
+      if (removeNo(&(no->ptrFilhos[i]), raiz, valor))
+        break;
+    }
+  }
+  if (i == no->cont) {
+    if (!removeNo(&(no->ptrFilhos[i]), raiz, valor))
+      no->cont--;
+  }
+
+  return 1;
+}
 
 int buscaArvB(ArvB *raiz, int valor) {
   ArvB auxArvB = *raiz;
   int i, existeElemento = 0;
   if (auxArvB != NULL) {
     for (i = 0; i < auxArvB->cont; i++) {
-      existeElemento =+ buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
+      existeElemento = +buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
       if (auxArvB->chaves[i] == valor)
         return 1;
     }
-    existeElemento =+ buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
+    existeElemento = +buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
   }
   return existeElemento;
 }

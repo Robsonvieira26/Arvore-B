@@ -32,7 +32,8 @@ int main() {
   else
     printf("Nao achou");
   printf("\n %d \n", totalNOArvB(raiz));
-
+  removeArvB(raiz, 76);
+  emOrdemArvB(raiz);
   // for (;;) {
   //   int op = menu();
   //   printf("sua escolha foi %d\n", op);
