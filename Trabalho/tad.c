@@ -30,7 +30,7 @@ ArvB *criaArvB() {
 void emOrdemArvB(ArvB *raiz) { // filho esq pai filho dir
   // Em ordem
   ArvB auxArvB = *raiz;
-  int i, j;
+  int i;
   if (auxArvB != NULL) {
     for (i = 0; i < auxArvB->cont; i++) {
       emOrdemArvB(&(auxArvB->ptrFilhos[i]));
@@ -50,7 +50,7 @@ int insereNo(ArvB *raiz, ArvB *pai, int valor) {
   for (; i < (*raiz)->cont; i++) {
     if (valor <= (*raiz)->chaves[i]) {
       if (valor == (*raiz)->chaves[i])
-        return 0;
+        return 1;
       if (insereNo(&((*raiz)->ptrFilhos[i]), raiz, valor))
         break;
       // insere quando nao da pra inserir no no de baixo
@@ -154,17 +154,19 @@ void split(ArvB *raiz, ArvB *pai) {
 int buscaArvB(ArvB *raiz, int valor) {
   // Em ordem
   ArvB auxArvB = *raiz;
-  int i; // j quantidade de valores que foram testa no no
+  int i, existeElemento = 0; // j quantidade de valores que foram testa no no
   if (auxArvB != NULL) {
     for (i = 0; i < auxArvB->cont; i++) {
-      buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
+      existeElemento =+ buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
       if (auxArvB->chaves[i] == valor)
         return 1;
       // printf("\n [%d]\n", auxArvB->chaves[i]);
     }
-    buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
+    existeElemento =+ buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
+    if (auxArvB->chaves[i] == valor)
+        return 1;
   }
-  return 0;
+  return existeElemento;
 }
 
 int totalNOArvB(ArvB *raiz) {

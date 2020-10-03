@@ -27,7 +27,7 @@ int main() {
   insereArvB(raiz, 98);
   emOrdemArvB(raiz);
   printf("\n");
-  if (buscaArvB(raiz, 11))
+  if (buscaArvB(raiz, 76))
     printf("Achou");
   else
     printf("Nao achou");
