@@ -18,6 +18,7 @@ int main() {
   int n = 5;
   // scanf("%d",&n);
   insereArvB(raiz, n);
+  imprimirArv(*raiz);
   // for (;;) {
   //   int op = menu();
   //   printf("sua escolha foi %d\n", op);

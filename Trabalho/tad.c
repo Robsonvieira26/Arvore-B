@@ -30,7 +30,7 @@ void imprimirArv(ArvB raiz) { // filho esq pai filho dir
   if (raiz) {
     for (i = 0; i < raiz->cont; i++) {
       imprimirArv(raiz->ptrFilhos[i]);
-      printf("%d ", raiz->chaves[i + 1]); //?? pq + 1
+      printf("%d ", raiz->chaves[i]);
     }
     imprimirArv(raiz->ptrFilhos[i]);
   }
@@ -38,8 +38,11 @@ void imprimirArv(ArvB raiz) { // filho esq pai filho dir
 
 // void liberaArvB(ArvB *raiz) {}
 int insereArvB(ArvB *raiz, int valor) {
-  if(*raiz == NULL){
-    return 2;
+  if(ehVaziaArvB(raiz)) {
+    (*raiz) = (ArvB) malloc (sizeof(struct NO));
+    (*raiz)->cont = 1;
+    (*raiz)->chaves[0] = valor;
+    return 1;
   }
 
   int i = 0;
