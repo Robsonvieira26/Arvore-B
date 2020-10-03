@@ -1,6 +1,4 @@
 #include "arvoreB.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /*
 Grupo ALR
@@ -18,6 +16,6 @@ int main() {
   insertBtre(btree, 1);
   insertBtre(btree, 65);
   insertBtre(btree, 7);
-  printf("%p",btree);
+
   return 0;
 }

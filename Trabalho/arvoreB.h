@@ -1,5 +1,9 @@
 #ifndef HEADER
 #define HEADER
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
 typedef struct no **BTree;
 typedef struct no *NO;
 
