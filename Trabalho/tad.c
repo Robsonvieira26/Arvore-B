@@ -1,5 +1,5 @@
 #include "arvoreB.h"
-#define GRAU 5
+#define GRAU 4
 
 struct no {
   int countKeys;
@@ -10,7 +10,7 @@ struct no {
 BTree createBTree() {
   BTree btree = (BTree)malloc(sizeof(NO));
   if (btree != NULL) {
-    *btree = NULL;
+    *btree = createNode();
   }
   return btree;
 }
@@ -23,25 +23,22 @@ NO createNode() {
   }
   return no;
 }
+int insereNo(BTree btree, BTree previous, int value) {
 
-int insertBtre(BTree btree, int value) {
-  if (btree == NULL) {
-    return 0;
-  }
   if (isEmpty(btree)) {
-    *btree = createNode();
-    (*btree)->countKeys++;
-    (*btree)->keys[0] = value;
     return 0;
   }
-
+  // percorre e insere no sem fazer split
+  // todo falta acessar o no filho
   int i = 0;
   for (; i < (*btree)->countKeys; i++) {
     if (value <= (*btree)->keys[i]) {
       if (value == (*btree)->keys[i])
         return 0;
+      if (insereNo(&((*btree)->childrens[i]), btree, value))
+        break;
+      // insere quando nao da pra inserir no no de baixo
       int j = (*btree)->countKeys;
-
       while (j > i) {
         (*btree)->keys[j] = (*btree)->keys[j - 1];
         j--;
@@ -53,25 +50,47 @@ int insertBtre(BTree btree, int value) {
     }
   }
   if (i == (*btree)->countKeys) {
-    (*btree)->keys[i] = value;
-    (*btree)->countKeys++;
+    if (!insereNo(&((*btree)->childrens[i]), btree, value)) {
+      (*btree)->keys[i] = value;
+      (*btree)->countKeys++;
+    }
   }
+  // so faz split quando o no atual enche
   if (isFull(btree)) {
     printf("split\n");
 
     int max = (*btree)->countKeys;
-    int mediana = floor(max/2);
-    int arrayLeft[mediana];
+    int mediana = (max / 2);
 
-    printf("%d %d %d %d %f\n", (int)floor(max/2), (int)ceil(max/2), max, max/2, max/2);
-    
-    int i=0;
-    for(;i<max;i++){
-
+    NO left = createNode();
+    NO right = createNode();
+    int l = 0;
+    for (; l < mediana; l++) {
+      left->keys[l] = (*btree)->keys[l];
+      left->countKeys++;
     }
+
+    l++;
+    int j = 0;
+    for (; l < max; l++) {
+      right->keys[j] = (*btree)->keys[l];
+      right->countKeys++;
+      j++;
+    }
+
+    (*btree)->countKeys = 0;
+    (*previous)->keys[(*previous)->countKeys] = (*btree)->keys[mediana];
+    (*previous)->childrens[(*previous)->countKeys] = left;
+    (*previous)->countKeys++;
+    (*previous)->childrens[(*previous)->countKeys] = right;
   }
 
   return 1;
+}
+
+int insertBtre(BTree btree, int value) {
+  return insereNo(btree, btree, value);
+  printf("%p\n", *btree);
 }
 
 int isEmpty(BTree btree) {

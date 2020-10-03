@@ -15,7 +15,7 @@ int main() {
   insertBtre(btree, 4);
   insertBtre(btree, 1);
   insertBtre(btree, 65);
-  insertBtre(btree, 7);
+  insertBtre(btree, 3);
 
   return 0;
 }
