@@ -28,17 +28,14 @@ ArvB *criaArvB() {
 }
 
 void imprimirArv(ArvB raiz) { // filho esq pai filho dir
-
   // Em ordem
   int i, j;
   if (raiz != NULL) {
-    printf("\n |");
     for (i = 0; i < raiz->cont; i++) {
-      printf("- %d - ", raiz->chaves[i]);
       j = i + 1;
       if (j == raiz->cont)
-        printf("| Profundidade: [%d]\n", raiz->cont);
-      imprimirArv(raiz->ptrFilhos[i]);
+        imprimirArv(raiz->ptrFilhos[i]);
+      printf("[%d]", raiz->chaves[i]);
     }
     imprimirArv(raiz->ptrFilhos[i]);
   }
