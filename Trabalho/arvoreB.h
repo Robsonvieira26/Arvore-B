@@ -13,6 +13,7 @@ void imprimirArv(ArvB raiz);
 // Minhas funcs
 int ehCheiaArvB(ArvB *raiz);
 int insereNo(ArvB *raiz, ArvB *pai, int valor);
+void split(ArvB *raiz, ArvB *pai);
 void espera();
 int menu();
 

@@ -44,13 +44,12 @@ void imprimirArv(ArvB raiz) { // filho esq pai filho dir
   }
 }
 
-int insereNo(ArvB *raiz, ArvB *pai, int valor){
-  
+int insereNo(ArvB *raiz, ArvB *pai, int valor) {
+
   if (ehVaziaArvB(raiz)) {
     return 0;
   }
   // percorre e insere no sem fazer split
-  // todo falta acessar o no filho
   int i = 0;
   for (; i < (*raiz)->cont; i++) {
     if (valor <= (*raiz)->chaves[i]) {
@@ -78,80 +77,80 @@ int insereNo(ArvB *raiz, ArvB *pai, int valor){
   }
   // so faz split quando o no atual enche
   if (ehCheiaArvB(raiz)) {
-    printf("split\n");
-
-    int max = (*raiz)->cont;
-    int mediana = (max / 2);
-
-    ArvB left = criaNO();
-    ArvB right = criaNO();
-    int l = 0;
-    for (; l < mediana; l++) {
-      left->chaves[l] = (*raiz)->chaves[l];
-      left->cont++;
-    }
-    int k=0;
-    for(;k <= mediana; k++){
-      left->ptrFilhos[k] = (*raiz)->ptrFilhos[k];
-    }
-
-    l++;
-    int j = 0;
-    for (; l < max; l++) {
-      right->chaves[j] = (*raiz)->chaves[l];
-      right->ptrFilhos[j] = (*raiz)->ptrFilhos[l];
-      right->cont++;
-      j++;
-    }
-    j=0;
-    for (; k <= max; k++) {
-      right->ptrFilhos[j] = (*raiz)->ptrFilhos[k];
-      j++;
-    }
-    // promovendo o valor
-    int promoverValor = (*raiz)->chaves[mediana];
-    free(*raiz);
-    *raiz = NULL;
-
-    int t = 0;
-    if ((*pai) == NULL) {
-      (*pai) = criaNO();
-    } else {
-      for (; t < (*pai)->cont; t++) {
-        if (promoverValor < (*pai)->chaves[t]) {
-
-          int j = (*pai)->cont;
-          while (j > t) {
-            (*pai)->chaves[j] = (*pai)->chaves[j - 1];
-            j--;
-          }
-          j = (*pai)->cont + 1;
-          while (j > (t + 1)) {
-            (*pai)->ptrFilhos[j] = (*pai)->ptrFilhos[j - 1];
-            j--;
-          }
-
-          (*pai)->chaves[t] = promoverValor;
-          (*pai)->ptrFilhos[t] = left;
-          (*pai)->ptrFilhos[t + 1] = right;
-          (*pai)->cont++;
-          break;
-        }
-      }
-    }
-    if (t == (*pai)->cont) {
-      (*pai)->chaves[t] = promoverValor;
-      (*pai)->ptrFilhos[t] = left;
-      (*pai)->ptrFilhos[t + 1] = right;
-      (*pai)->cont++;
-    }
+    split(raiz, pai);
   }
 
   return 1;
 }
 
-int insereArvB(ArvB *raiz, int valor) {
-  return insereNo(raiz, raiz, valor);
+int insereArvB(ArvB *raiz, int valor) { return insereNo(raiz, raiz, valor); }
+
+void split(ArvB *raiz, ArvB *pai) {
+  int max = (*raiz)->cont;
+  int mediana = (max / 2);
+
+  ArvB left = criaNO();
+  ArvB right = criaNO();
+  int l = 0;
+  for (; l < mediana; l++) {
+    left->chaves[l] = (*raiz)->chaves[l];
+    left->cont++;
+  }
+  int k = 0;
+  for (; k <= mediana; k++) {
+    left->ptrFilhos[k] = (*raiz)->ptrFilhos[k];
+  }
+
+  l++;
+  int j = 0;
+  for (; l < max; l++) {
+    right->chaves[j] = (*raiz)->chaves[l];
+    right->ptrFilhos[j] = (*raiz)->ptrFilhos[l];
+    right->cont++;
+    j++;
+  }
+  j = 0;
+  for (; k <= max; k++) {
+    right->ptrFilhos[j] = (*raiz)->ptrFilhos[k];
+    j++;
+  }
+  // promovendo o valor
+  int promoverValor = (*raiz)->chaves[mediana];
+  free(*raiz);
+  *raiz = NULL;
+
+  int t = 0;
+  if ((*pai) == NULL) {
+    (*pai) = criaNO();
+  } else {
+    for (; t < (*pai)->cont; t++) {
+      if (promoverValor < (*pai)->chaves[t]) {
+
+        int j = (*pai)->cont;
+        while (j > t) {
+          (*pai)->chaves[j] = (*pai)->chaves[j - 1];
+          j--;
+        }
+        j = (*pai)->cont + 1;
+        while (j > (t + 1)) {
+          (*pai)->ptrFilhos[j] = (*pai)->ptrFilhos[j - 1];
+          j--;
+        }
+
+        (*pai)->chaves[t] = promoverValor;
+        (*pai)->ptrFilhos[t] = left;
+        (*pai)->ptrFilhos[t + 1] = right;
+        (*pai)->cont++;
+        break;
+      }
+    }
+  }
+  if (t == (*pai)->cont) {
+    (*pai)->chaves[t] = promoverValor;
+    (*pai)->ptrFilhos[t] = left;
+    (*pai)->ptrFilhos[t + 1] = right;
+    (*pai)->cont++;
+  }
 }
 // void liberaArvB(ArvB *raiz) {}
 // int removeArvB(ArvB *raiz, int valor) {}
