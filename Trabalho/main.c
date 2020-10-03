@@ -23,7 +23,7 @@ int main() {
   insereArvB(raiz, 54);
   insereArvB(raiz, 76);
   insereArvB(raiz, 98);
-  imprimirArv(*raiz);
+  emOrdemArvB(raiz);
   // for (;;) {
   //   int op = menu();
   //   printf("sua escolha foi %d\n", op);

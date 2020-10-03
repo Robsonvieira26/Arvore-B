@@ -27,17 +27,18 @@ ArvB *criaArvB() {
   return raiz;
 }
 
-void imprimirArv(ArvB raiz) { // filho esq pai filho dir
+void emOrdemArvB(ArvB *raiz) { // filho esq pai filho dir
   // Em ordem
+  ArvB auxArvB = *raiz;
   int i, j;
-  if (raiz != NULL) {
-    for (i = 0; i < raiz->cont; i++) {
+  if (auxArvB != NULL) {
+    for (i = 0; i < auxArvB->cont; i++) {
       j = i + 1;
-      if (j == raiz->cont)
-        imprimirArv(raiz->ptrFilhos[i]);
-      printf("[%d]", raiz->chaves[i]);
+      if (j == auxArvB->cont)
+        emOrdemArvB(&(auxArvB->ptrFilhos[i]));
+      printf("[%d]", auxArvB->chaves[i]);
     }
-    imprimirArv(raiz->ptrFilhos[i]);
+    emOrdemArvB(&(auxArvB->ptrFilhos[i]));
   }
 }
 
@@ -151,7 +152,7 @@ void split(ArvB *raiz, ArvB *pai) {
 }
 // void liberaArvB(ArvB *raiz) {}
 // int removeArvB(ArvB *raiz, int valor) {}
-// int buscaArvB(ArvB *raiz, int valor) {}
+int buscaArvB(ArvB *raiz, int valor) {}
 
 int ehVaziaArvB(ArvB *raiz) {
   if (raiz == NULL) // raiz é null
