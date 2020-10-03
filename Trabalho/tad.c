@@ -1,7 +1,9 @@
 #include "arvoreB.h"
 #include <stdio.h>
 #include <stdlib.h>
-#define GRAU 3
+#define GRAU 5
+
+int insereNo(ArvB no, int valor, int *pos);
 
 struct NO {
   int chaves[GRAU - 1], cont; // valores possiveis em um no && cont é a
@@ -11,8 +13,14 @@ struct NO {
 
 ArvB *criaArvB() {
   ArvB *raiz = (ArvB *)malloc(sizeof(ArvB));
-  if (raiz != NULL)
-    *raiz = NULL;
+  if (raiz != NULL){
+    *raiz = (ArvB) malloc(sizeof(struct NO));
+    (*raiz)->cont = 3;
+    (*raiz)->chaves[0] = 2;
+    (*raiz)->chaves[1] = 3;
+    (*raiz)->chaves[2] = 5;
+  }
+    
   return raiz;
 }
 
@@ -30,7 +38,43 @@ void imprimirArv(ArvB raiz) { // filho esq pai filho dir
 
 // void liberaArvB(ArvB *raiz) {}
 int insereArvB(ArvB *raiz, int valor) {
-  
+  if(*raiz == NULL){
+    return 2;
+  }
+
+  int i = 0;
+  int insert = insereNo(*raiz, valor, &i);
+  if(!insereNo) return 2;
+  printf("%d\n", insert);
+
+  for(int a=0;a<(GRAU-1);a++){
+    printf("valor: %d - i: %d\n",(*raiz)->chaves[a], a);
+  }
+}
+
+int insereNo(ArvB no, int valor, int *pos){
+  int i = *pos;
+
+  while (i < no->cont && valor > no->chaves[i] ) {
+    i++;
+  }
+
+  if (no->chaves[i] == valor) {
+    return 0;
+  }
+
+  int j = i,aux;
+  aux = no->chaves[j];
+  no->chaves[j] = valor;
+
+  while (j < no->cont) {
+    j++;
+    no->chaves[j] = aux;
+  }
+
+  no->cont++;
+  *pos = i;
+  return 1;
 }
 // int removeArvB(ArvB *raiz, int valor) {}
 // int buscaArvB(ArvB *raiz, int valor) {}

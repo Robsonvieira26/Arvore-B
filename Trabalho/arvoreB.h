@@ -9,6 +9,7 @@ int removeArvB(ArvB *raiz, int valor);
 int buscaArvB(ArvB *raiz, int valor);
 int ehVaziaArvB(ArvB *raiz);
 int totalNOArvB(ArvB *raiz);
+void imprimirArv(ArvB raiz);
 // Minhas funcs
 void espera();
 int menu();
