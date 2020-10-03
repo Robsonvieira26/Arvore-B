@@ -170,6 +170,17 @@ int buscaArvB(ArvB *raiz, int valor) {
   return 0;
 }
 
+int totalNOArvB(ArvB *raiz) {
+  if (ehVaziaArvB(raiz)) {
+    return 0;
+  }
+  int i = 0, total = 1;
+  for (i = 0; i <= (*raiz)->cont; i++) {
+    total = total + totalNOArvB(&((*raiz)->ptrFilhos[i]));
+  }
+  return total;
+}
+
 int ehVaziaArvB(ArvB *raiz) {
   if (raiz == NULL) // raiz é null
     return 1;

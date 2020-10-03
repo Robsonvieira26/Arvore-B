@@ -29,6 +29,7 @@ int main() {
     printf("Achou");
   else
     printf("Nao achou");
+  printf("\n %d \n", totalNOArvB(raiz));
 
   // for (;;) {
   //   int op = menu();
