@@ -1,7 +1,7 @@
 #include "arvoreB.h"
 #include <stdio.h>
 #include <stdlib.h>
-#define GRAU 5
+#define GRAU 7
 
 struct no {
   int countKeys;
@@ -27,6 +27,9 @@ NO createNode() {
 }
 
 int insertBtre(BTree btree, int value) {
+  if (btree == NULL) {
+    return 0;
+  }
   if (isEmpty(btree)) {
     *btree = createNode();
     (*btree)->countKeys++;
@@ -34,14 +37,31 @@ int insertBtre(BTree btree, int value) {
     return 0;
   }
 
-  for (int i = 0; i < (*btree)->countKeys; i++) {
+  int i = 0;
+  for (; i < (*btree)->countKeys; i++) {
     if (value <= (*btree)->keys[i]) {
       if (value == (*btree)->keys[i])
         return 0;
-      insertBtre(&(*btree)->childrens[i], value);
+      int j = (*btree)->countKeys;
+
+      while (j > i) {
+        (*btree)->keys[j] = (*btree)->keys[j - 1];
+        j--;
+      }
+
+      (*btree)->keys[i] = value;
+      (*btree)->countKeys++;
+      break;
+      // insertBtre(&(*btree)->childrens[i], value);
     }
   }
-  
+  if (i == (*btree)->countKeys) {
+    (*btree)->keys[i] = value;
+    (*btree)->countKeys++;
+  }
+  if (isFull(btree)) {
+    printf("split");
+  }
 
   // if (!isFull(&previous)) {
   //   for (int l = 0; l < previous->countKeys; l++) {

@@ -15,6 +15,9 @@ int main() {
   insertBtre(btree, 5);
   insertBtre(btree, 2);
   insertBtre(btree, 4);
-
+  insertBtre(btree, 1);
+  insertBtre(btree, 65);
+  insertBtre(btree, 7);
+  printf("%p",btree);
   return 0;
 }
