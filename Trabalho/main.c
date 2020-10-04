@@ -16,23 +16,24 @@ int main() {
   // printf("Arvore Iniciada\n");
   // printf("Digite o valor a ser Inserido:\n");
   // scanf("%d",&n);
-  insereArvB(raiz, 4);
-  insereArvB(raiz, 1);
+  insereArvB(raiz, 5);
+  insereArvB(raiz, 12);
   insereArvB(raiz, 7);
-  insereArvB(raiz, 9);
-  insereArvB(raiz, 80);
-  insereArvB(raiz, 34);
-  insereArvB(raiz, 54);
-  insereArvB(raiz, 76);
-  insereArvB(raiz, 98);
+  insereArvB(raiz, 3);
+  insereArvB(raiz, 32);
+  insereArvB(raiz, 8);
+  // insereArvB(raiz, 80);
+  // insereArvB(raiz, 50);
+  // insereArvB(raiz, 76);
+  // insereArvB(raiz, 98);
   emOrdemArvB(raiz);
   printf("\n");
-  if (buscaArvB(raiz, 76))
-    printf("Achou");
-  else
-    printf("Nao achou");
-  printf("\n %d \n", totalNOArvB(raiz));
-  removeArvB(raiz, 76);
+  // if (buscaArvB(raiz, 76))
+  //   printf("Achou");
+  // else
+  //   printf("Nao achou");
+  // printf("\n %d \n", totalNOArvB(raiz));
+  removeArvB(raiz, 5);
   emOrdemArvB(raiz);
   // for (;;) {
   //   int op = menu();

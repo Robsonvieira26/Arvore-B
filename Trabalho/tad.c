@@ -160,6 +160,7 @@ int removeNo(ArvB *raiz, ArvB *anterior, int valor) {
 
   ArvB no = *raiz;
   int i = 0;
+  int countAux = no->cont;
   for (; i < no->cont; i++) {
     if (valor <= no->chaves[i]) {
       if (valor == no->chaves[i]) {
@@ -175,9 +176,58 @@ int removeNo(ArvB *raiz, ArvB *anterior, int valor) {
         break;
     }
   }
-  if (i == no->cont) {
+  if (i == countAux) {
     if (!removeNo(&(no->ptrFilhos[i]), raiz, valor))
       no->cont--;
+  }
+
+  if (!temQtdMinima(no->cont)) {
+    printf("%p\n", no);
+    printf("%p\n", *anterior);
+    printf("%d\n", ehNoFolha(no));
+    if (ehNoFolha(no) && no != *anterior) {
+      int j = 0;
+      for (; j < (*anterior)->cont; j++) {
+        if (valor < (*anterior)->chaves[j])
+          break;
+      }
+      printf("%d\n", j);
+      int posPaiChaves = j;
+      int posPaiFilho = j;
+      if ((j - 1) >= 0 &&
+          temQtdMinima((*anterior)->ptrFilhos[(j - 1)]->cont - 1)) {
+        posPaiChaves--;
+        posPaiFilho--;
+      } else if ((j + 1) <= (*anterior)->cont &&
+                 temQtdMinima((*anterior)->ptrFilhos[(j + 1)]->cont - 1)) {
+        posPaiFilho++;
+      }
+
+      if (posPaiFilho != j) {
+        ArvB noIrmao = (*anterior)->ptrFilhos[posPaiFilho];
+
+        int t = (*raiz)->cont;
+        while (t > i) {
+          (*raiz)->chaves[t] = (*raiz)->chaves[t - 1];
+          t--;
+        }
+
+        (*raiz)->chaves[i] = (*anterior)->chaves[posPaiChaves];
+        (*raiz)->cont++;
+        int posIrmao = 0;
+        if (posPaiFilho < j)
+          posIrmao = noIrmao->cont - 1;
+        (*anterior)->chaves[posPaiChaves] = noIrmao->chaves[posIrmao];
+        if (posPaiFilho > j) {
+          t = 0;
+          while (t < (noIrmao->cont - 1)) {
+            noIrmao->chaves[t] = noIrmao->chaves[t + 1];
+            t++;
+          }
+        }
+        noIrmao->cont--;
+      }
+    }
   }
 
   return 1;
@@ -214,6 +264,30 @@ int ehVaziaArvB(ArvB *raiz) {
   if (*raiz == NULL) // conteudo da raiz é null
     return 1;
   return 0;
+}
+
+int ehVazioNo(ArvB raiz) {
+  if (raiz->cont == 0)
+    return 1;
+  return 0;
+}
+
+int temQtdMinima(int qtd) {
+  if (qtd >= ((GRAU / 2) - 1))
+    return 1;
+  return 0;
+}
+
+int ehNoFolha(ArvB raiz) {
+  int ehFolha = 1;
+  int i = 0;
+  for (; i < raiz->cont; i++) {
+    if (!ehVaziaArvB(&(raiz->ptrFilhos[i]))) {
+      ehFolha = 0;
+      break;
+    }
+  }
+  return ehFolha;
 }
 
 int ehCheiaArvB(ArvB *raiz) {

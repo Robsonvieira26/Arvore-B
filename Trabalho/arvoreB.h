@@ -14,6 +14,8 @@ void emOrdemArvB(ArvB *raiz);         // feito
 int ehCheiaArvB(ArvB *raiz);
 int insereNo(ArvB *raiz, ArvB *pai, int valor);
 int removeNo(ArvB *raiz, ArvB *anterior, int valor);
+int temQtdMinima(int qtd);
+int ehNoFolha(ArvB raiz);
 void split(ArvB *raiz, ArvB *pai);
 void espera();
 int menu();
