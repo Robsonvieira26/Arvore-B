@@ -300,6 +300,22 @@ int ehCheiaArvB(ArvB *raiz) {
   return 0;
 }
 
+void liberaArvB(ArvB *raiz) {
+  ArvB auxArvB = *raiz;
+  int i, existeElemento = 0;
+  if (auxArvB != NULL) {
+    for (i = 0; i <= auxArvB->cont; i++) {
+
+      liberaArvB(&(auxArvB->ptrFilhos[i]));
+      // printf("=> %d", auxArvB->chaves[i + 1]);
+      // liberaArvB(&(auxArvB->ptrFilhos[i + 1]));
+    }
+    // liberaArvB(&(auxArvB->ptrFilhos[i]));
+    free(*raiz);
+    *raiz = NULL;
+  }
+}
+
 int menu() {
   int op;
   do {

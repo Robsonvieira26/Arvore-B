@@ -16,25 +16,32 @@ int main() {
   // printf("Arvore Iniciada\n");
   // printf("Digite o valor a ser Inserido:\n");
   // scanf("%d",&n);
-  insereArvB(raiz, 5);
-  insereArvB(raiz, 12);
+  printf("eh vazia: %d\n", ehVaziaArvB(raiz));
+
+  insereArvB(raiz, 4);
+  insereArvB(raiz, 1);
   insereArvB(raiz, 7);
-  insereArvB(raiz, 3);
-  insereArvB(raiz, 32);
-  insereArvB(raiz, 8);
-  // insereArvB(raiz, 80);
-  // insereArvB(raiz, 50);
-  // insereArvB(raiz, 76);
-  // insereArvB(raiz, 98);
+  insereArvB(raiz, 9);
+  insereArvB(raiz, 80);
+  insereArvB(raiz, 34);
+  insereArvB(raiz, 54);
+  insereArvB(raiz, 76);
+  insereArvB(raiz, 98);
+  printf("eh vazia: %d\n", ehVaziaArvB(raiz));
+
   emOrdemArvB(raiz);
   printf("\n");
-  // if (buscaArvB(raiz, 76))
-  //   printf("Achou");
-  // else
-  //   printf("Nao achou");
-  // printf("\n %d \n", totalNOArvB(raiz));
-  removeArvB(raiz, 5);
+  if (buscaArvB(raiz, 76))
+    printf("Achou o 76\n");
+  else
+    printf("Nao achou o 76\n");
+  printf("Existem %d nos na arvore \n", totalNOArvB(raiz));
+  // removeArvB(raiz, 76);
   emOrdemArvB(raiz);
+  printf("\nlibera:\n");
+  liberaArvB(raiz);
+  printf("\neh vazia: %d\n", ehVaziaArvB(raiz));
+
   // for (;;) {
   //   int op = menu();
   //   printf("sua escolha foi %d\n", op);
