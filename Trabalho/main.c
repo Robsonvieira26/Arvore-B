@@ -27,6 +27,10 @@ int main() {
   // printf("\n %d \n", totalNOArvB(raiz));
   removeArvB(raiz, 50);
   emOrdemArvB(raiz);
+  printf("\nlibera:\n");
+  liberaArvB(raiz);
+  printf("\neh vazia: %d\n", ehVaziaArvB(raiz));
+
   // for (;;) {
   //   int op = menu();
   //   printf("sua escolha foi %d\n", op);

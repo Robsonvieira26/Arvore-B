@@ -2,8 +2,8 @@
 #define HEADER
 typedef struct NO *ArvB;
 
-ArvB *criaArvB(); // feito
-void liberaArvB(ArvB *raiz);
+ArvB *criaArvB();                      // feito
+void liberaArvB(ArvB *raiz);           // feito
 int insereArvB(ArvB *raiz, int valor); // feito
 int removeArvB(ArvB *raiz, int valor);
 int buscaArvB(ArvB *raiz, int valor); // feito
