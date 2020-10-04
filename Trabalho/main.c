@@ -13,19 +13,11 @@ Robson Roberto Vieira Junior - 11911BCC056
 int main() {
   ArvB *raiz = criaArvB();
 
-  // printf("Arvore Iniciada\n");
-  // printf("Digite o valor a ser Inserido:\n");
-  // scanf("%d",&n);
-  insereArvB(raiz, 5);
-  insereArvB(raiz, 12);
-  insereArvB(raiz, 7);
-  insereArvB(raiz, 3);
-  insereArvB(raiz, 32);
-  insereArvB(raiz, 8);
-  // insereArvB(raiz, 80);
-  // insereArvB(raiz, 50);
-  // insereArvB(raiz, 76);
-  // insereArvB(raiz, 98);
+  int values[18] = {10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,75};
+  int i=0;
+  for(;i<18;i++){
+    insereArvB(raiz, values[i]);
+  }
   emOrdemArvB(raiz);
   printf("\n");
   // if (buscaArvB(raiz, 76))
@@ -33,7 +25,7 @@ int main() {
   // else
   //   printf("Nao achou");
   // printf("\n %d \n", totalNOArvB(raiz));
-  removeArvB(raiz, 5);
+  removeArvB(raiz, 50);
   emOrdemArvB(raiz);
   // for (;;) {
   //   int op = menu();

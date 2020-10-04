@@ -160,7 +160,7 @@ int removeNo(ArvB *raiz, ArvB *anterior, int valor) {
 
   ArvB no = *raiz;
   int i = 0;
-  int countAux = no->cont;
+  int auxCount = no->cont;
   for (; i < no->cont; i++) {
     if (valor <= no->chaves[i]) {
       if (valor == no->chaves[i]) {
@@ -176,15 +176,27 @@ int removeNo(ArvB *raiz, ArvB *anterior, int valor) {
         break;
     }
   }
-  if (i == countAux) {
-    if (!removeNo(&(no->ptrFilhos[i]), raiz, valor))
-      no->cont--;
+  if(i == auxCount){
+    if(!removeNo(&(no->ptrFilhos[i]), raiz, valor)){
+      if( i < (GRAU -1) && no->chaves[i] == valor){
+        no->cont--;
+      }
+    }
   }
 
   if (!temQtdMinima(no->cont)) {
-    printf("%p\n", no);
-    printf("%p\n", *anterior);
-    printf("%d\n", ehNoFolha(no));
+    if (!ehNoFolha(no)) {
+      ArvB atual = no->ptrFilhos[i];
+      ArvB pai = no;
+      while (atual != NULL) {
+        pai = atual;
+        atual = atual->ptrFilhos[atual->cont];
+      }
+      no->chaves[i] = pai->chaves[pai->cont-1];
+      no->cont++;
+      pai->cont--;
+      // removeNo(raiz, no->ptrFilhos[])
+    }
     if (ehNoFolha(no) && no != *anterior) {
       int j = 0;
       for (; j < (*anterior)->cont; j++) {
@@ -281,7 +293,7 @@ int temQtdMinima(int qtd) {
 int ehNoFolha(ArvB raiz) {
   int ehFolha = 1;
   int i = 0;
-  for (; i < raiz->cont; i++) {
+  for (; i <= raiz->cont; i++) {
     if (!ehVaziaArvB(&(raiz->ptrFilhos[i]))) {
       ehFolha = 0;
       break;
