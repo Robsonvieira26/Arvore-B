@@ -275,11 +275,7 @@ int ehVaziaArvB(ArvB *raiz) {
     return 1;
   if (*raiz == NULL) // conteudo da raiz é null
     return 1;
-  return 0;
-}
-
-int ehVazioNo(ArvB raiz) {
-  if (raiz->cont == 0)
+  if((*raiz)->cont == 0)
     return 1;
   return 0;
 }
