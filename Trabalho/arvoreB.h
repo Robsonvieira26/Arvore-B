@@ -14,6 +14,10 @@ void emOrdemArvB(ArvB *raiz);         // feito
 int ehCheiaArvB(ArvB *raiz);
 int insereNo(ArvB *raiz, ArvB *pai, int valor);
 int removeNo(ArvB *raiz, ArvB *anterior, int valor);
+int removeReorganiza(ArvB *autal, ArvB *anteriore,  ArvB *no);
+int removeIrmao(ArvB *atual, ArvB *anterior, int i, int j);
+int removeAtualEInsereIrmao(ArvB *atual, ArvB *anterior, int j);
+int underflow(ArvB *atual, ArvB *anterior, int j);
 int temQtdMinima(int qtd);
 int ehNoFolha(ArvB raiz);
 void split(ArvB *raiz, ArvB *pai);

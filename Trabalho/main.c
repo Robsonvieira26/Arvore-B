@@ -13,11 +13,13 @@ Robson Roberto Vieira Junior - 11911BCC056
 int main() {
   ArvB *raiz = criaArvB();
 
-  int values[18] = {10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,75};
+  int values[26] = {10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170, 180, 190, 200, 210, 220, 230, 240, 250, 260};
   int i=0;
-  for(;i<18;i++){
+  for(;i<7;i++){
+    printf("%d ", values[i]);
     insereArvB(raiz, values[i]);
   }
+  printf("\n");
   emOrdemArvB(raiz);
   printf("\n");
   // if (buscaArvB(raiz, 76))
@@ -25,11 +27,13 @@ int main() {
   // else
   //   printf("Nao achou");
   // printf("\n %d \n", totalNOArvB(raiz));
-  removeArvB(raiz, 50);
+  removeArvB(raiz, 20);
   emOrdemArvB(raiz);
-  printf("\nlibera:\n");
-  liberaArvB(raiz);
-  printf("\neh vazia: %d\n", ehVaziaArvB(raiz));
+  printf("\n");
+  emOrdemArvB(raiz);
+  // printf("\nlibera:\n");
+  // liberaArvB(raiz);
+  // printf("\neh vazia: %d\n", ehVaziaArvB(raiz));
 
   // for (;;) {
   //   int op = menu();
