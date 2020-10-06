@@ -1,7 +1,7 @@
 #include "arvoreB.h"
 #include <stdio.h>
 #include <stdlib.h>
-#define GRAU 4
+#define GRAU 6
 
 struct NO {
   int chaves[GRAU - 1], cont; // valores possiveis em um no && cont é a
@@ -248,7 +248,8 @@ int removeReorganiza(ArvB *atual, ArvB *anterior, ArvB *no) {
   return 0;
 }
 
-int removeIrmao(ArvB *atual, ArvB *anterior, int i, int j) {
+int removeIrmao(ArvB *atual, ArvB *anterior, int i,
+                int j) { // o i e a posicao do valor no atual
   int posPaiChaves = j;
   int posPaiFilho = j;
   if ((j - 1) >= 0 && temQtdMinima((*anterior)->ptrFilhos[(j - 1)]->cont - 1)) {
@@ -287,8 +288,9 @@ int removeIrmao(ArvB *atual, ArvB *anterior, int i, int j) {
   return 0;
 }
 
-int removeAtualEInsereIrmao(ArvB *atual, ArvB *anterior, int j) {
-  if ((j - 1) >= 0) { // checa se existe no a esquerda
+int removeAtualEInsereIrmao(ArvB *atual, ArvB *anterior,
+                            int j) { // o j e a posicao do atual no anterior
+  if ((j - 1) >= 0) {                // checa se existe no a esquerda
     ArvB noIrmao = (*anterior)->ptrFilhos[j - 1];
 
     noIrmao->chaves[noIrmao->cont] = (*anterior)->chaves[j - 1];
@@ -344,6 +346,43 @@ int removeAtualEInsereIrmao(ArvB *atual, ArvB *anterior, int j) {
 
 int underflow(ArvB *atual, ArvB *anterior, int j) {
   if ((j - 1) >= 0) {
+    ArvB noIrmao = (*anterior)->ptrFilhos[j - 1];
+
+    noIrmao->chaves[noIrmao->cont] = (*anterior)->chaves[j - 1];
+    noIrmao->cont++;
+
+
+    int l = 0;// colocando todos os elemento do no atual parao noIrmao
+    for (; l < (*atual)->cont; l++) {
+      noIrmao->chaves[noIrmao->cont] = (*atual)->chaves[l];
+      noIrmao->cont++;
+    }
+    int posFilho = noIrmao->cont-(*atual)->cont;
+    for (l = 0; l <= (*atual)->cont; l++) {
+      noIrmao->ptrFilhos[posFilho + l] = (*atual)->ptrFilhos[l];
+    }
+    free(*atual);
+
+    l = j-1;  // removendo o elemento que foi colocado no noIrmao
+    while (l < ((*anterior)->cont - 1)) {
+      (*anterior)->chaves[l] = (*anterior)->chaves[l + 1];
+      l++;
+    }
+
+    l = j;
+    while (l < (*anterior)->cont) {
+      (*anterior)->ptrFilhos[l] = (*anterior)->ptrFilhos[l + 1];
+      l++;
+    }
+    (*anterior)->ptrFilhos[(*anterior)->cont] = NULL;
+    (*anterior)->cont--;
+
+
+    if ((*anterior)->cont == 0) {
+      ArvB *aux = anterior;
+      *anterior = *atual;
+      free(*aux);
+    }
 
   } else {
     (*atual)->chaves[(*atual)->cont] = (*anterior)->chaves[j];

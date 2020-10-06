@@ -15,7 +15,7 @@ int main() {
 
   int values[26] = {10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170, 180, 190, 200, 210, 220, 230, 240, 250, 260};
   int i=0;
-  for(;i<7;i++){
+  for(;i<26;i++){
     printf("%d ", values[i]);
     insereArvB(raiz, values[i]);
   }
@@ -27,9 +27,7 @@ int main() {
   // else
   //   printf("Nao achou");
   // printf("\n %d \n", totalNOArvB(raiz));
-  removeArvB(raiz, 20);
-  emOrdemArvB(raiz);
-  printf("\n");
+  removeArvB(raiz, 120);
   emOrdemArvB(raiz);
   // printf("\nlibera:\n");
   // liberaArvB(raiz);
