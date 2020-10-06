@@ -1,7 +1,7 @@
 #include "arvoreB.h"
 #include <stdio.h>
 #include <stdlib.h>
-#define GRAU 6
+#define GRAU 4 // qtd de chaves -1
 
 struct NO {
   int chaves[GRAU - 1], cont; // valores possiveis em um no && cont é a
@@ -351,19 +351,18 @@ int underflow(ArvB *atual, ArvB *anterior, int j) {
     noIrmao->chaves[noIrmao->cont] = (*anterior)->chaves[j - 1];
     noIrmao->cont++;
 
-
-    int l = 0;// colocando todos os elemento do no atual parao noIrmao
+    int l = 0; // colocando todos os elemento do no atual parao noIrmao
     for (; l < (*atual)->cont; l++) {
       noIrmao->chaves[noIrmao->cont] = (*atual)->chaves[l];
       noIrmao->cont++;
     }
-    int posFilho = noIrmao->cont-(*atual)->cont;
+    int posFilho = noIrmao->cont - (*atual)->cont;
     for (l = 0; l <= (*atual)->cont; l++) {
       noIrmao->ptrFilhos[posFilho + l] = (*atual)->ptrFilhos[l];
     }
     free(*atual);
 
-    l = j-1;  // removendo o elemento que foi colocado no noIrmao
+    l = j - 1; // removendo o elemento que foi colocado no noIrmao
     while (l < ((*anterior)->cont - 1)) {
       (*anterior)->chaves[l] = (*anterior)->chaves[l + 1];
       l++;
@@ -376,7 +375,6 @@ int underflow(ArvB *atual, ArvB *anterior, int j) {
     }
     (*anterior)->ptrFilhos[(*anterior)->cont] = NULL;
     (*anterior)->cont--;
-
 
     if ((*anterior)->cont == 0) {
       ArvB *aux = anterior;
@@ -495,32 +493,4 @@ void liberaArvB(ArvB *raiz) {
     free(*raiz);
     *raiz = NULL;
   }
-}
-
-int menu() {
-  int op;
-  do {
-    printf("==============================\n");
-    printf("|        ARVORE B MENU       |\n");
-    printf("|        GRAU %d              |\n", GRAU);
-    printf("==============================\n");
-    printf("|[1] Iniciar Arvore B        |\n");
-    printf("|[2] Inserir um Valor        |\n");
-    printf("|[3] Remover um Valor        |\n");
-    printf("|[4] Procurar um Valor       |\n");
-    printf("|[5] Total de Nos            |\n");
-    printf("|[6] Arvore Vazia?           |\n");
-    printf("|[7] Imprimir                |\n");
-    printf("|[8] Apagar                  |\n");
-    printf("|[9] Sair do Programa        |\n");
-    printf("------------------------------\n");
-    printf("|[O] Escolha: ");
-    scanf("%d", &op);
-    printf("------------------------------\n");
-  } while (op < 0 || op > 9);
-  return op;
-}
-void espera() {
-  system("pause");
-  system("cls");
 }

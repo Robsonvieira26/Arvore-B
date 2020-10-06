@@ -13,13 +13,14 @@ Robson Roberto Vieira Junior - 11911BCC056
 int main() {
   ArvB *raiz = criaArvB();
 
-  int values[26] = {10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170, 180, 190, 200, 210, 220, 230, 240, 250, 260};
-  int i=0;
-  for(;i<26;i++){
-    printf("%d ", values[i]);
+  int values[9] = {10, 90, 50, 70, 35, 25, 33, 12, 0};
+  int i = 0;
+  for (; i < 9; i++) {
+    printf("inserindo:%d \n", values[i]);
     insereArvB(raiz, values[i]);
   }
   printf("\n");
+  printf("Imprimindo arvore em Ordem\n");
   emOrdemArvB(raiz);
   printf("\n");
   // if (buscaArvB(raiz, 76))
@@ -27,61 +28,10 @@ int main() {
   // else
   //   printf("Nao achou");
   // printf("\n %d \n", totalNOArvB(raiz));
-  removeArvB(raiz, 120);
+  printf("Removendo 0");
+  removeArvB(raiz, 10);
+  printf("\n");
+  printf("Imprimindo arvore em Ordem\n");
   emOrdemArvB(raiz);
-  // printf("\nlibera:\n");
-  // liberaArvB(raiz);
-  // printf("\neh vazia: %d\n", ehVaziaArvB(raiz));
-
-  // for (;;) {
-  //   int op = menu();
-  //   printf("sua escolha foi %d\n", op);
-  //   switch (op) {
-  //   case 1:
-  //     raiz = criaArvB();
-  //     printf("Arvore Iniciada\n");
-  //     espera();
-  //     break;
-  //   case 2:
-  //     printf("Digite o valor a ser Inserido:\n");
-  //     int n;
-  //     scanf("%d",&n);
-  //     insereArvB(raiz, n);
-  //     espera();
-  //     break;
-  //   case 3:
-  //     printf("Digite o valor a ser Removido:\n");
-  //     espera();
-  //     break;
-  //   case 4:
-  //     printf("Digite o valor a ser Procurado:\n");
-  //     espera();
-  //     break;
-  //   case 5:
-  //     printf("A quantidade Total de nos na arvore é: [VALOR]\n");
-  //     espera();
-  //     break;
-  //   case 6:
-  //     if (ehVaziaArvB(raiz) == 1)
-  //       printf("A arvore esta vazia\n");
-  //     if (ehVaziaArvB(raiz) == 0)
-  //       printf("A arvore nao esta vazia\n");
-  //     espera();
-  //     break;
-  //   case 7:
-  //     printf("Imprimindo Arvore (Em Ordem)\n");
-  //     imprimirArv(*raiz);
-  //     espera();
-  //     break;
-  //   case 8:
-  //     printf("Arvore Apagada\n");
-  //     espera();
-  //     break;
-  //   case 9:
-  //     printf("Saindo...\n");
-  //     exit(1);
-  //     break;
-  //   }
-  // }
   return 0;
 }
