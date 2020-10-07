@@ -1,7 +1,7 @@
 #include "arvoreB.h"
 #include <stdio.h>
 #include <stdlib.h>
-#define GRAU 4 // qtd de chaves -1
+#define GRAU 6 // qtd de chaves -1
 
 struct NO {
   int chaves[GRAU - 1], cont; // valores possiveis em um no && cont é a
@@ -158,7 +158,7 @@ int removeNo(ArvB *raiz, ArvB *anterior, int valor) {
     return 0;
   }
 
-  int i = 0, removido = 0;
+  int i = 0;
   int auxCount = (*raiz)->cont;
   for (; i < (*raiz)->cont; i++) {
     if (valor <= (*raiz)->chaves[i]) {
@@ -169,7 +169,8 @@ int removeNo(ArvB *raiz, ArvB *anterior, int valor) {
           j++;
         }
         (*raiz)->cont--;
-        removido = 1;
+        if (!ehNoFolha(*raiz))
+          removeReorganiza(&((*raiz)->ptrFilhos[i]), raiz, raiz);
         break;
       }
       if (removeNo(&((*raiz)->ptrFilhos[i]), raiz, valor))
@@ -179,30 +180,28 @@ int removeNo(ArvB *raiz, ArvB *anterior, int valor) {
   if (i == auxCount) {
     if (!removeNo(&((*raiz)->ptrFilhos[i]), raiz, valor)) {
       if (i < (GRAU - 1) && (*raiz)->chaves[i] == valor) {
-        removido = 1;
         (*raiz)->cont--;
+        if (!ehNoFolha(*raiz))
+          removeReorganiza(&((*raiz)->ptrFilhos[i]), raiz, raiz);
       }
     }
   }
 
-  if (!temQtdMinima((*raiz)->cont) || removido == 1) {
+  if (!temQtdMinima((*raiz)->cont)) {
     int j = 0; // posicao do filho no pai
     for (; j < (*anterior)->cont; j++) {
       if (valor < (*anterior)->chaves[j])
         break;
     }
-    if (!ehNoFolha((*raiz)) && (*raiz) != *anterior) {
-      underflow(raiz, anterior, j);
-      return 1;
-    }
-    if (!ehNoFolha((*raiz)) && (*raiz) != *anterior) {
-      removeReorganiza(&((*raiz)->ptrFilhos[i]), &(*raiz), &(*raiz));
-      return 1;
-    }
-    if (ehNoFolha((*raiz)) && (*raiz) != *anterior) {
-      int op1 = removeIrmao(raiz, anterior, i, j);
+
+    if ((*raiz) != *anterior) {
+      int op1 = removeIrmao(raiz, anterior, j);
       if (!op1) {
-        removeAtualEInsereIrmao(raiz, anterior, j);
+        if (ehNoFolha(*raiz)) {
+          removeAtualEInsereIrmao(raiz, anterior, j);
+        } else {
+          underflow(raiz, anterior, j);
+        }
       }
     }
   }
@@ -235,57 +234,18 @@ int removeReorganiza(ArvB *atual, ArvB *anterior, ArvB *no) {
         if (valor <= (*anterior)->chaves[j])
           break;
       }
-      if (ehNoFolha((*atual)) && (*atual) != *anterior) {
-        int op1 = removeIrmao(atual, anterior, (*atual)->cont - 1, j);
+      if ((*atual) != *anterior) {
+        int op1 = removeIrmao(atual, anterior, j);
         if (!op1) {
-          removeAtualEInsereIrmao(atual, anterior, j);
+          if (ehNoFolha(*atual)) {
+            removeAtualEInsereIrmao(atual, anterior, j);
+          } else {
+            underflow(atual, anterior, j);
+          }
         }
-      }
-      if (!ehNoFolha((*atual))) {
-        underflow(atual, anterior, j);
       }
       return 1;
     }
-  }
-  return 0;
-}
-
-int removeIrmao(ArvB *atual, ArvB *anterior, int i,
-                int j) { // o i e a posicao do valor no atual
-  int posPaiChaves = j;
-  int posPaiFilho = j;
-  if ((j - 1) >= 0 && temQtdMinima((*anterior)->ptrFilhos[(j - 1)]->cont - 1)) {
-    posPaiChaves--;
-    posPaiFilho--;
-  } else if ((j + 1) <= (*anterior)->cont &&
-             temQtdMinima((*anterior)->ptrFilhos[(j + 1)]->cont - 1)) {
-    posPaiFilho++;
-  }
-
-  if (posPaiFilho != j) {
-    ArvB noIrmao = (*anterior)->ptrFilhos[posPaiFilho];
-
-    int t = (*atual)->cont;
-    while (t > i) {
-      (*atual)->chaves[t] = (*atual)->chaves[t - 1];
-      t--;
-    }
-
-    (*atual)->chaves[i] = (*anterior)->chaves[posPaiChaves];
-    (*atual)->cont++;
-    int posIrmao = 0;
-    if (posPaiFilho < j)
-      posIrmao = noIrmao->cont - 1;
-    (*anterior)->chaves[posPaiChaves] = noIrmao->chaves[posIrmao];
-    if (posPaiFilho > j) {
-      t = 0;
-      while (t < (noIrmao->cont - 1)) {
-        noIrmao->chaves[t] = noIrmao->chaves[t + 1];
-        t++;
-      }
-    }
-    noIrmao->cont--;
-    return 1;
   }
   return 0;
 }
@@ -344,6 +304,58 @@ int removeAtualEInsereIrmao(ArvB *atual, ArvB *anterior,
     (*anterior)->ptrFilhos[(*anterior)->cont] = NULL;
     (*anterior)->cont--;
   }
+}
+
+int removeIrmao(ArvB *atual, ArvB *anterior,
+                int j) { // o i e a posicao do valor no atual
+  if ((j - 1) >= 0 && temQtdMinima((*anterior)->ptrFilhos[(j - 1)]->cont - 1)) {
+    int posPaiFilho = j - 1;
+    ArvB noIrmao = (*anterior)->ptrFilhos[posPaiFilho];
+
+    int t = (*atual)->cont;
+    while (t > 0) {
+      (*atual)->chaves[t] = (*atual)->chaves[t - 1];
+      t--;
+    }
+    t = (*atual)->cont + 1;
+    while (t > 0) {
+      (*atual)->ptrFilhos[t] = (*atual)->ptrFilhos[t - 1];
+      t--;
+    }
+
+    (*atual)->chaves[0] = (*anterior)->chaves[posPaiFilho];
+    (*atual)->ptrFilhos[0] = noIrmao->ptrFilhos[noIrmao->cont];
+    (*atual)->cont++;
+    (*anterior)->chaves[posPaiFilho] = noIrmao->chaves[noIrmao->cont - 1];
+    noIrmao->ptrFilhos[noIrmao->cont] = NULL;
+    noIrmao->cont--;
+    return 1;
+  } else if ((j + 1) <= (*anterior)->cont &&
+             temQtdMinima((*anterior)->ptrFilhos[(j + 1)]->cont - 1)) {
+    int posPaiFilho = j + 1;
+    ArvB noIrmao = (*anterior)->ptrFilhos[posPaiFilho];
+
+    (*atual)->chaves[(*atual)->cont] = (*anterior)->chaves[j];
+    (*atual)->cont++;
+    (*atual)->ptrFilhos[(*atual)->cont] = noIrmao->ptrFilhos[0];
+    (*anterior)->chaves[j] = noIrmao->chaves[0];
+
+    int t = 0;
+    while (t < (noIrmao->cont - 1)) {
+      noIrmao->chaves[t] = noIrmao->chaves[t + 1];
+      t++;
+    }
+    t = 0;
+    while (t < noIrmao->cont) {
+      noIrmao->ptrFilhos[t] = noIrmao->ptrFilhos[t + 1];
+      t++;
+    }
+    noIrmao->ptrFilhos[noIrmao->cont] = NULL;
+    noIrmao->cont--;
+
+    return 1;
+  }
+  return 0;
 }
 
 int underflow(ArvB *atual, ArvB *anterior, int j) {

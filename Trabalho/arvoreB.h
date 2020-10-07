@@ -15,7 +15,7 @@ int ehCheiaArvB(ArvB *raiz);
 int insereNo(ArvB *raiz, ArvB *pai, int valor);
 int removeNo(ArvB *raiz, ArvB *anterior, int valor);
 int removeReorganiza(ArvB *autal, ArvB *anteriore,  ArvB *no);
-int removeIrmao(ArvB *atual, ArvB *anterior, int i, int j);
+int removeIrmao(ArvB *atual, ArvB *anterior, int j);
 int removeAtualEInsereIrmao(ArvB *atual, ArvB *anterior, int j);
 int underflow(ArvB *atual, ArvB *anterior, int j);
 int temQtdMinima(int qtd);
