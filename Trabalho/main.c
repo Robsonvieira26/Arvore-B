@@ -13,9 +13,9 @@ Robson Roberto Vieira Junior - 11911BCC056
 int main() {
   ArvB *raiz = criaArvB();
 
-  int values[9] = {10, 90, 50, 70, 35, 25, 33, 12, 0};
+  int values[10] = {23, 234, 543, 64, 34, 65, 75, 21, 12, 78};
   int i = 0;
-  for (; i < 9; i++) {
+  for (; i < 10; i++) {
     printf("inserindo:%d \n", values[i]);
     insereArvB(raiz, values[i]);
   }

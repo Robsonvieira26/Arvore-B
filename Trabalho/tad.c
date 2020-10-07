@@ -193,9 +193,11 @@ int removeNo(ArvB *raiz, ArvB *anterior, int valor) {
     }
     if (!ehNoFolha((*raiz)) && (*raiz) != *anterior) {
       underflow(raiz, anterior, j);
+      return 1;
     }
     if (!ehNoFolha((*raiz)) && (*raiz) != *anterior) {
       removeReorganiza(&((*raiz)->ptrFilhos[i]), &(*raiz), &(*raiz));
+      return 1;
     }
     if (ehNoFolha((*raiz)) && (*raiz) != *anterior) {
       int op1 = removeIrmao(raiz, anterior, i, j);
