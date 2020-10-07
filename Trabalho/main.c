@@ -29,7 +29,7 @@ int main() {
   //   printf("Nao achou");
   // printf("\n %d \n", totalNOArvB(raiz));
   printf("Removendo 0");
-  removeArvB(raiz, 10);
+  removeArvB(raiz, 0);
   printf("\n");
   printf("Imprimindo arvore em Ordem\n");
   emOrdemArvB(raiz);

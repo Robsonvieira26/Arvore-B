@@ -186,22 +186,22 @@ int removeNo(ArvB *raiz, ArvB *anterior, int valor) {
   }
 
   if (!temQtdMinima((*raiz)->cont) || removido == 1) {
-    if (!ehNoFolha((*raiz)) && (*raiz) != *anterior) {
-      removeReorganiza(&((*raiz)->ptrFilhos[i]), &(*raiz), &(*raiz));
-    }
     int j = 0; // posicao do filho no pai
     for (; j < (*anterior)->cont; j++) {
       if (valor < (*anterior)->chaves[j])
         break;
+    }
+    if (!ehNoFolha((*raiz)) && (*raiz) != *anterior) {
+      underflow(raiz, anterior, j);
+    }
+    if (!ehNoFolha((*raiz)) && (*raiz) != *anterior) {
+      removeReorganiza(&((*raiz)->ptrFilhos[i]), &(*raiz), &(*raiz));
     }
     if (ehNoFolha((*raiz)) && (*raiz) != *anterior) {
       int op1 = removeIrmao(raiz, anterior, i, j);
       if (!op1) {
         removeAtualEInsereIrmao(raiz, anterior, j);
       }
-    }
-    if (!ehNoFolha((*raiz)) && (*raiz) != *anterior) {
-      underflow(raiz, anterior, j);
     }
   }
 
@@ -377,9 +377,9 @@ int underflow(ArvB *atual, ArvB *anterior, int j) {
     (*anterior)->cont--;
 
     if ((*anterior)->cont == 0) {
-      ArvB *aux = anterior;
+      ArvB aux = *anterior;
       *anterior = *atual;
-      free(*aux);
+      free(aux);
     }
 
   } else {
@@ -411,9 +411,9 @@ int underflow(ArvB *atual, ArvB *anterior, int j) {
     (*anterior)->cont--;
 
     if ((*anterior)->cont == 0) {
-      ArvB *aux = anterior;
+      ArvB aux = *anterior;
       *anterior = *atual;
-      free(*aux);
+      free(aux);
     }
   }
 }
