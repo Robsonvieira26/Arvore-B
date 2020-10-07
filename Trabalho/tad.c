@@ -42,7 +42,7 @@ void emOrdemArvB(ArvB *raiz) { // filho esq pai filho dir
 
 int insereNo(ArvB *raiz, ArvB *pai, int valor) {
 
-  if (ehVaziaArvB(raiz)) {
+  if (ehNull(raiz)) {
     return 0;
   }
   // percorre e insere no sem fazer split
@@ -154,7 +154,7 @@ int removeArvB(ArvB *raiz, int valor) { return removeNo(raiz, raiz, valor); }
 
 int removeNo(ArvB *raiz, ArvB *anterior, int valor) {
 
-  if (ehVaziaArvB(raiz)) {
+  if (ehNull(raiz)) {
     return 0;
   }
 
@@ -210,7 +210,7 @@ int removeNo(ArvB *raiz, ArvB *anterior, int valor) {
 }
 
 int removeReorganiza(ArvB *atual, ArvB *anterior, ArvB *no) {
-  if (ehVaziaArvB(atual)) {
+  if (ehNull(atual)) {
     int i = 0, valor = (*anterior)->chaves[(*anterior)->cont - 1];
     for (; i < (*no)->cont; i++) {
       if (valor < (*no)->chaves[i])
@@ -447,7 +447,7 @@ int buscaArvB(ArvB *raiz, int valor) {
 }
 
 int totalNOArvB(ArvB *raiz) {
-  if (ehVaziaArvB(raiz)) {
+  if (ehNull(raiz)) {
     return 0;
   }
   int i = 0, total = 1;
@@ -462,6 +462,16 @@ int ehVaziaArvB(ArvB *raiz) {
     return 1;
   if (*raiz == NULL) // conteudo da raiz é null
     return 1;
+  if((*raiz)->cont == 0)
+    return 1;
+  return 0;
+}
+
+int ehNull(ArvB *raiz){
+  if(raiz == NULL)
+    return 1;
+  if(*raiz == NULL)
+    return 1;
   return 0;
 }
 
@@ -475,7 +485,7 @@ int ehNoFolha(ArvB raiz) {
   int ehFolha = 1;
   int i = 0;
   for (; i <= raiz->cont; i++) {
-    if (!ehVaziaArvB(&(raiz->ptrFilhos[i]))) {
+    if (!ehNull(&(raiz->ptrFilhos[i]))) {
       ehFolha = 0;
       break;
     }

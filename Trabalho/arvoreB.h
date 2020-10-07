@@ -5,12 +5,13 @@ typedef struct NO *ArvB;
 ArvB *criaArvB();                      // feito
 void liberaArvB(ArvB *raiz);           // feito
 int insereArvB(ArvB *raiz, int valor); // feito
-int removeArvB(ArvB *raiz, int valor);
+int removeArvB(ArvB *raiz, int valor); // feito
 int buscaArvB(ArvB *raiz, int valor); // feito
 int ehVaziaArvB(ArvB *raiz);          // feito
 int totalNOArvB(ArvB *raiz);          // feito
 void emOrdemArvB(ArvB *raiz);         // feito
 // Minhas funcs
+int ehNull(ArvB *raiz);
 int ehCheiaArvB(ArvB *raiz);
 int insereNo(ArvB *raiz, ArvB *pai, int valor);
 int removeNo(ArvB *raiz, ArvB *anterior, int valor);
