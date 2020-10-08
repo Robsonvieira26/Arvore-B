@@ -1,7 +1,7 @@
-#include "arvoreB.h"
+#include "arvoreBGrupoALR.h"
 #include <stdio.h>
 #include <stdlib.h>
-#define GRAU 6 // qtd de chaves -1
+// qtd de chaves -1
 
 struct NO {
   int chaves[GRAU - 1], cont; // valores possiveis em um no && cont é a
@@ -148,7 +148,6 @@ void split(ArvB *raiz, ArvB *pai) {
     (*pai)->cont++;
   }
 }
-// void liberaArvB(ArvB *raiz) {}
 
 int removeArvB(ArvB *raiz, int valor) { return removeNo(raiz, raiz, valor); }
 
@@ -498,12 +497,8 @@ void liberaArvB(ArvB *raiz) {
   int i, existeElemento = 0;
   if (auxArvB != NULL) {
     for (i = 0; i <= auxArvB->cont; i++) {
-
       liberaArvB(&(auxArvB->ptrFilhos[i]));
-      // printf("=> %d", auxArvB->chaves[i + 1]);
-      // liberaArvB(&(auxArvB->ptrFilhos[i + 1]));
     }
-    // liberaArvB(&(auxArvB->ptrFilhos[i]));
     free(*raiz);
     *raiz = NULL;
   }
