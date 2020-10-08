@@ -432,17 +432,20 @@ int underflow(ArvB *atual, ArvB *anterior, int j) {
 }
 
 int buscaArvB(ArvB *raiz, int valor) {
-  ArvB auxArvB = *raiz;
-  int i, existeElemento = 0;
-  if (auxArvB != NULL) {
-    for (i = 0; i < auxArvB->cont; i++) {
-      existeElemento = +buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
-      if (auxArvB->chaves[i] == valor)
+  if (ehNull(raiz))
+    return 0;
+  int i;
+  for (i = 0; i < (*raiz)->cont; i++) {
+    if ((*raiz)->chaves[i] <= valor) {
+      if ((*raiz)->chaves[i] == valor)
         return 1;
+      continue;
     }
-    existeElemento = +buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
+    break;
   }
-}
+  if(!buscaArvB(&((*raiz)->ptrFilhos[i]), valor))
+    return 0;
+  return 1;
 }
 
 int totalNOArvB(ArvB *raiz) {
