@@ -442,7 +442,7 @@ int buscaArvB(ArvB *raiz, int valor) {
     }
     existeElemento = +buscaArvB(&(auxArvB->ptrFilhos[i]), valor);
   }
-  return existeElemento;
+}
 }
 
 int totalNOArvB(ArvB *raiz) {
@@ -461,15 +461,15 @@ int ehVaziaArvB(ArvB *raiz) {
     return 1;
   if (*raiz == NULL) // conteudo da raiz é null
     return 1;
-  if((*raiz)->cont == 0)
+  if ((*raiz)->cont == 0)
     return 1;
   return 0;
 }
 
-int ehNull(ArvB *raiz){
-  if(raiz == NULL)
+int ehNull(ArvB *raiz) {
+  if (raiz == NULL)
     return 1;
-  if(*raiz == NULL)
+  if (*raiz == NULL)
     return 1;
   return 0;
 }

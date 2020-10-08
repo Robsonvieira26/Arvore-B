@@ -38,18 +38,18 @@ int main() {
 
   printf("\n\nBuscando o valor 4\n");
   if (buscaArvB(raiz, 4))
-    printf("O numero foi encontrado\n");
+    printf("\nO numero foi encontrado\n");
   else
-    printf("O numero nao foi encontrado\n");
+    printf("\nO numero nao foi encontrado\n");
 
   printf("\nInserindo novamente o valor 4\n");
   insereArvB(raiz, 4);
 
   printf("\nBuscando o valor 4\n");
   if (buscaArvB(raiz, 4))
-    printf("O numero foi encontrado\n");
+    printf("\nO numero foi encontrado\n");
   else
-    printf("O numero nao foi encontrado\n");
+    printf("\nO numero nao foi encontrado\n");
 
   printf("\nEsta arvore possui %d nos\n", totalNOArvB(raiz));
 
