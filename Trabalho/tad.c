@@ -1,4 +1,4 @@
-#include "arvoreBGrupoALR.h"
+#include "header.h"
 #include <stdio.h>
 #include <stdlib.h>
 // qtd de chaves -1
@@ -443,7 +443,7 @@ int buscaArvB(ArvB *raiz, int valor) {
     }
     break;
   }
-  if(!buscaArvB(&((*raiz)->ptrFilhos[i]), valor))
+  if (!buscaArvB(&((*raiz)->ptrFilhos[i]), valor))
     return 0;
   return 1;
 }
