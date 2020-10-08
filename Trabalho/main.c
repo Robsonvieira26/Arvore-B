@@ -16,6 +16,11 @@ int main() {
          GRAU, GRAU - 1, GRAU);
   ArvB *raiz = criaArvB();
 
+  if (ehVaziaArvB(raiz))
+    printf("Arvore eh vazia\n");
+  else
+    printf("Arvore nao eh vazia\n");
+
   printf("Inserindo Valores de 1 a 30\n");
   int i;
   for (i = 1; i <= 30; i++) {
@@ -56,8 +61,11 @@ int main() {
   emOrdemArvB(raiz);
 
   printf("\n\nEsta arvore possui %d nos\n", totalNOArvB(raiz));
+
   if (ehVaziaArvB(raiz))
-    printf("");
+    printf("Arvore eh vazia\n");
+  else
+    printf("Arvore nao eh vazia\n");
 
   printf("\nLiberando arvore\n");
   liberaArvB(raiz);
