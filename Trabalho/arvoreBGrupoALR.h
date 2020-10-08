@@ -23,5 +23,6 @@ int underflow(ArvB *atual, ArvB *anterior, int j);
 int temQtdMinima(int qtd);
 int ehNoFolha(ArvB raiz);
 void split(ArvB *raiz, ArvB *pai);
+int ehNull(ArvB *raiz);
 
 #endif

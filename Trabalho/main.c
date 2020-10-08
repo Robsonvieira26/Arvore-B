@@ -55,7 +55,9 @@ int main() {
   printf("\n-Valores na arvore-\n");
   emOrdemArvB(raiz);
 
-  printf("\nEsta arvore possui %d nos\n", totalNOArvB(raiz));
+  printf("\n\nEsta arvore possui %d nos\n", totalNOArvB(raiz));
+  if (ehVaziaArvB(raiz))
+    printf("");
 
   printf("\nLiberando arvore\n");
   liberaArvB(raiz);
